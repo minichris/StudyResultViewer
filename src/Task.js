@@ -11,14 +11,15 @@ export default class Task extends React.Component {
 	render(){
 		let secondsSpent = this.props.data.TimeSpent / 1000;
 		let systemString = getSystemString(this.props.data.System);
-		
+		let AnswersString = this.props.data.Answer.split('\n').map(answer => <><br />{answer}</>);
+		console.log(AnswersString);
 		
 		return (
 			<div className="task">
 				<div className="taskInfo">
 					<div className="id">ID: {this.props.data.id}</div>
 					<div className="BelievesSuccess">Participant believed successful: {this.props.data.BelievesSuccess}</div>
-					<div className="Answer">Answers: {this.props.data.Answer}</div>
+					<div className="Answer">Answers: {AnswersString}</div>
 					<div className="System">System: {systemString}</div>
 					<div className="TimeSpent">Time spent: {secondsSpent} seconds</div>
 					<div className="Timestamp">Timestamp: {this.props.data.Timestamp}</div>
