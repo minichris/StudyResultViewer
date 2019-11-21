@@ -1,0 +1,14 @@
+.task img{
+	height:100%;
+}
+
+.task div{
+	border: 1px black solid;
+	flex: 1 0 auto;
+}
+
+.task{
+	display: flex;
+	height: 300px;
+	width: 100%;
+}
