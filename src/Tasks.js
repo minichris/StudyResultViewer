@@ -9,8 +9,8 @@ export default class Tasks extends React.Component {
 	}
 	
 	render(){
-		let elements = this.props.data.map(task =>
-			 <Task data={task}/>
+		let elements = this.props.data.filter(task => task.Completed).map((task, i) =>
+			 <Task key={"Task" + i} data={task}/>
 		);
 		return (
 			<>

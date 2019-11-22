@@ -1,5 +1,6 @@
 .task img{
 	height:100%;
+	max-height: 300px;
 }
 
 .task div{
@@ -9,6 +10,6 @@
 
 .task{
 	display: flex;
-	height: 300px;
+	max-height: 500px;
 	width: 100%;
 }

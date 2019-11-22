@@ -61,7 +61,7 @@ function loadLogs(){
 
 function loadAllTasks(){
 	function loadTask(task = 0){
-		var request = loadViaAjax("http://10.5.35.35:25564/tasks?_start=" + task + "&_limit=1");
+		var request = loadViaAjax("http://10.5.35.35:25562/tasks?_start=" + task + "&_limit=1");
 		return request;
 	}
 	
@@ -75,7 +75,6 @@ function loadAllTasks(){
 				taskPromises[i] = loadTask(i);
 			}
 			Promise.all(taskPromises).then(function(values){
-				console.log(values);
 				values.forEach(function(value, index) {
 					if(value){
 						Tasks[index] = value[0];
