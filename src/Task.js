@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import $ from 'jquery';
-import {getSystemString} from './utilities.js';
+import {getSystemDetails, filterLogs, getReleventFilterLogs} from './utilities.js';
 import TaskRelatedLogs from './TaskRelatedLogs.js';
+import LogChart from './LogChart.js';
 
 export default class Task extends React.Component {
 	constructor(props){
@@ -11,9 +12,8 @@ export default class Task extends React.Component {
 	
 	render(){
 		let secondsSpent = this.props.data.TimeSpentOnTask / 1000;
-		let systemString = getSystemString(this.props.data.TaskURL);
+		let systemString = getSystemDetails(this.props.data.TaskURL).Type;
 		let AnswersString = this.props.data.Answer.split('\n').map(answer => <><br />{answer}</>);
-		console.log(AnswersString);
 		
 		return (
 			<div className="task">
@@ -29,6 +29,7 @@ export default class Task extends React.Component {
 					<TaskRelatedLogs task={this.props.data} allLogs={global.Logs} />
 				</div>
 				<img src={"data:image/png;base64, " + this.props.data.ScreenshotPNG} />
+				<LogChart logData={getReleventFilterLogs(global.Logs, this.props.data)} />
 			</div>
 		);
 	}

@@ -8,6 +8,8 @@ import './style.css';
 
 import App from './App.js';
 
+const IP = "127.0.0.1";
+
 global.Logs = [];
 global.Tasks = [];
 
@@ -52,7 +54,7 @@ function getAllData(){
 
 //Loads and transforms the patterns from the json format
 function loadLogs(){
-	var request = loadViaAjax("http://10.5.35.35:25564/logs");
+	var request = loadViaAjax("http://" + IP + ":25564/logs");
 	request.done(function(data) {
 		global.Logs = data;
 	});
@@ -61,7 +63,7 @@ function loadLogs(){
 
 function loadAllTasks(){
 	function loadTask(task = 0){
-		var request = loadViaAjax("http://10.5.35.35:25562/tasks?_start=" + task + "&_limit=1");
+		var request = loadViaAjax("http://" + IP + ":25562/tasks?_start=" + task + "&_limit=1");
 		return request;
 	}
 	
