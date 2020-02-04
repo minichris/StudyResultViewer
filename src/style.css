@@ -3,13 +3,10 @@
 	max-height: 300px;
 }
 
-.task div{
+td{
 	border: 1px black solid;
-	flex: 1 0 auto;
 }
 
-.task{
-	display: flex;
-	max-height: 500px;
-	width: 100%;
+.warning{
+	color: red;
 }

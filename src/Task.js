@@ -13,24 +13,35 @@ export default class Task extends React.Component {
 	render(){
 		let secondsSpent = this.props.task.TimeSpentOnTask / 1000;
 		let systemString = getSystemDetails(this.props.task.TaskURL).Type;
-		let AnswersString = this.props.task.Answer.split('\n').map(answer => <><br />{answer}</>);
+		let answersString = this.props.task.Answer.split('\n').map(answer => <><br />{answer}</>);
 		
+		let logChart;
+		if(getSystemDetails(this.props.task.TaskURL).ShouldHaveLogs){
+			logChart = <LogChart logData={getReleventFilterLogs(this.props.task)} />;
+		}
+		else{
+			logChart = <span>This task shouldn't have GDPVis component usage data.</span>;
+		}
+
 		return (
-			<div className="task">
-				<div className="taskInfo">
-					<div className="Participantid">Participant ID: {this.props.task.participantID}</div>
+			<tr className="task">
+				<td className="taskInfo">
+					<div className="Participantid">Participant ID: {this.props.task.Participant}</div>
 					<div className="BelievesSuccess">Participant believed successful: {this.props.task.ParticipantBelievesSuccess.toString()}</div>
-					<div className="Answer">Answers: {AnswersString}</div>
+					<div className="Answer">Answers: {answersString}</div>
 					<div className="System">System: {systemString}</div>
 					<div className="TimeSpent">Time spent: {secondsSpent} seconds</div>
 					<div className="Timestamp">Timestamp: {this.props.task.Timestamp}</div>
-					<div className="Title">Task title: {this.props.task.Title}</div>
-					<div className="databaseid">Database ID: {this.props.task.id}</div>
+					<div className="Title">Task title: {this.props.task.DisplayTitle}, {this.props.task.Title}</div>
 					<TaskRelatedLogs task={this.props.task} />
-				</div>
-				<img src={"data:image/png;base64, " + this.props.task.ScreenshotPNG} />
-				<LogChart logData={getReleventFilterLogs(this.props.task)} />
-			</div>
+				</td>
+				<td>
+					<img src={"data:image/png;base64, " + this.props.task.ScreenshotPNG} />
+				</td>
+				<td>
+					<LogChart logData={getReleventFilterLogs(this.props.task)} />
+				</td>
+			</tr>
 		);
 	}
 }

@@ -1,18 +1,34 @@
 export function getSystemDetails(systemString){
 	if(systemString.includes("SV_8JrKQnFk0jktjU1")){
-		return {Type: "Wiki post use questionniare", ShouldHaveLogs: false};
+		return {
+			Type: "Wiki post use questionniare", 
+			ShouldHaveLogs: false,
+			RequiresMarking: false
+		};
 	}
 	
 	if(systemString.includes("SV_aUXwBVYTaC0wklL")){
-		return {Type: "GDPVis post use questionniare", ShouldHaveLogs: false};
+		return {
+			Type: "GDPVis post use questionniare", 
+			ShouldHaveLogs: false,
+			RequiresMarking: false
+		};
 	}
 	
 	if(systemString.includes("107.170.92.50")){
-		return {Type: "GDPVis system", ShouldHaveLogs: true};
+		return {
+			Type: "GDPVis system", 
+			ShouldHaveLogs: true,
+			RequiresMarking: true
+		};
 	}
 	
 	if(systemString.includes("virt10")){
-		return {Type: "Wiki system", ShouldHaveLogs: false};
+		return {
+			Type: "Wiki system", 
+			ShouldHaveLogs: false,
+			RequiresMarking: true
+		};
 	}
 	
 	return "Unknown system";

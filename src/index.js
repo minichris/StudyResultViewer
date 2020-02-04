@@ -19,10 +19,6 @@ getAllData().then(function(){
 	ReactDOM.render(<App Data={global.Data} />, document.getElementById("Content"));
 });
 
-$( document ).ready(function() {
-});
-
-
 //The common setup for loading JSON, including progress text system
 function loadViaAjax(inputURL, datatypeInput = "json", dataFilterInput){
 	var request = $.ajax({
@@ -58,7 +54,7 @@ function getFolderInformation(){
 }
 
 function getAllData(){
-	function loadParticipantLogs(dir){
+	function loadParticipantServerData(dir){
 		var request = loadViaAjax(BASEDIRECTORY + dir + "/db.json");
 		request.done(function(data) {
 			global.Data.find(participant => participant.id == dir).serverData = data;
@@ -66,9 +62,10 @@ function getAllData(){
 		return request;
 	}
 
-	function loadParticipantTasks(dir){
+	function loadParticipantClientData(dir){
 		var request = loadViaAjax(BASEDIRECTORY + dir + "/TaskData/" + "tasks.json");
 		request.done(function(data) {
+			data.forEach(task => task.Participant = dir); //add the missing participant ids for later
 			global.Data.find(participant => participant.id == dir).clientData = data;
 		});
 		return request;
@@ -78,10 +75,9 @@ function getAllData(){
 		getFolderInformation().then(function() {
 			let dataProcesses = [];
 			global.Data.forEach(function(dir){
-				dataProcesses.push(loadParticipantLogs(dir.id));
-				dataProcesses.push(loadParticipantTasks(dir.id));
+				dataProcesses.push(loadParticipantServerData(dir.id));
+				dataProcesses.push(loadParticipantClientData(dir.id));
 			});
-			console.log("Added all dataProcesses");
 			Promise.allSettled(dataProcesses).then(function() {
 				resolve("done");
 				console.log("done all dataProcesses");

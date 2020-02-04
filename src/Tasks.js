@@ -9,14 +9,25 @@ export default class Tasks extends React.Component {
 	}
 	
 	render(){
-		let elements = this.props.tasks.filter(task => task.Completed).map((task, i) =>
+		//.filter(task => task.Completed)
+		let orderedTasks = this.props.tasks.sort((a, b) => a.Timestamp - b.Timestamp);
+
+		let elements = orderedTasks.map((task, i) =>
 			 <Task key={"task_" + i} task={task}/>
 		);
 		return (
-			<>
-				<h2>Tasks</h2>
-				{elements}
-			</>
+			<table>
+				<thead>
+					<tr>
+						<th>Task Data</th>
+						<th>Screenshot</th>
+						<th>GDPVis Component Usage</th>
+					</tr>
+				</thead>
+				<tbody>
+					{elements}
+				</tbody>
+			</table>
 		);
 	}
 }

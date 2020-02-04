@@ -13,9 +13,9 @@ export default class TaskRelatedLogs extends React.Component {
 		let releventLogs = getReleventFilterLogs(this.props.task);
 		let divClasses = "Logs";
 		let additionalText = "";
-		if(getSystemDetails(this.props.task.TaskURL).ShouldHaveLogs != (releventLogs.length > 0)){
+		if(getSystemDetails(this.props.task.TaskURL).ShouldHaveLogs && (releventLogs.length == 0)){
 			divClasses += " concerningLog";
-			additionalText = "This is too many logs for this type of system.";
+			additionalText = <span className="warning">This task is missing logs!</span>;
 		}
 		return (
 			<div className="Logs">Relevent Logs: {releventLogs.length} {additionalText}</div>
