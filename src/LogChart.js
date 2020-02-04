@@ -5,11 +5,13 @@ import {
 import {getLogEntryDetails} from './utilities.js';
 
 export default class LogChart extends PureComponent {
-	createDataSet(logs){
+	createDataSet(logs, valuedComponents){
 		let dataset = [
 			{name: "Document Viewer", opened: 0, closed: 0},
 			{name: "Filter Panel", opened: 0, closed: 0},
-			{name: "Searchbar", used: 0}
+			{name: "Searchbar", used: 0},
+			{name: "Hyperlink", used: 0},
+			{name: null, opened: 0, closed: 0, used: 0}
 		];
 		logs.forEach(function(log){
 			const logDetails = getLogEntryDetails(log);
@@ -23,16 +25,22 @@ export default class LogChart extends PureComponent {
 			if(group.name == "Searchbar"){
 				group.used++;
 			}
+			if(group.name == "Hyperlink"){
+				group.used++;
+			}
+			if(group.name == null){
+				console.error("Couldn't parse", log);
+			}
 		});
-		return dataset;
+		return dataset.filter(item => valuedComponents.includes(item.name));
 	}
 	
   render() {
-		if(!this.props.logData){
-				<span>ERROR: No data was fed into LogChart.js .</span>
+		if(!this.props.logData || this.props.logData == null){
+			return (<span>ERROR: No data was fed into LogChart.js .</span>);
 		}
 		if(this.props.logData.length > 0){
-			let data = this.createDataSet(this.props.logData);
+			let data = this.createDataSet(this.props.logData, ["Document Viewer", "Filter Panel", "Searchbar"]);
 			return (
 				<div>
 					<h3>Component usage</h3>

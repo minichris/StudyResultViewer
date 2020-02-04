@@ -8,28 +8,27 @@ import './style.css';
 
 import App from './App.js';
 
-const IP = "127.0.0.1";
+const BASEDIRECTORY = "/Data/";
 
-global.Logs = [];
-global.Tasks = [];
+global.Data = [];
+
 
 getAllData().then(function(){
 	console.log("Done loading");
-	console.log("Tasks", global.Tasks);
-	console.log("Logs", global.Logs);
-	ReactDOM.render(<App Tasks={global.Tasks} Logs={global.Logs} />, document.getElementById("Content"));
+	console.log("Data", global.Data);
+	ReactDOM.render(<App Data={global.Data} />, document.getElementById("Content"));
 });
-
 
 $( document ).ready(function() {
 });
 
 
 //The common setup for loading JSON, including progress text system
-function loadViaAjax(inputURL){
+function loadViaAjax(inputURL, datatypeInput = "json", dataFilterInput){
 	var request = $.ajax({
 		url: inputURL,
-		dataType: "json",
+		dataType: datatypeInput,
+		dataFilter: dataFilterInput,
         xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 			/*xhr.addEventListener("progress", function (evt) { //progress event
@@ -44,48 +43,54 @@ function loadViaAjax(inputURL){
 	return request;
 }
 
-function getAllData(){
-	return new Promise((resolve, reject) => {
-		Promise.all([loadLogs(), loadAllTasks()]).then(function() {
-			resolve("done");
-		});
+function getFolderInformation(){
+	var request = loadViaAjax(BASEDIRECTORY + "foldername.txt", "text", function(data, type){
+		return data.split("\n").map(line => parseInt(line)).filter(line => !isNaN(line));
 	});
-}
-
-//Loads and transforms the patterns from the json format
-function loadLogs(){
-	var request = loadViaAjax("http://" + IP + ":25564/logs");
 	request.done(function(data) {
-		global.Logs = data;
+		data.forEach(dir => global.Data.push({
+			id: dir,
+			serverData: null,
+			clientData: null
+		}));
 	});
 	return request;
 }
 
-function loadAllTasks(){
-	function loadTask(task = 0){
-		var request = loadViaAjax("http://" + IP + ":25562/tasks?_start=" + task + "&_limit=1");
+function getAllData(){
+	function loadParticipantLogs(dir){
+		var request = loadViaAjax(BASEDIRECTORY + dir + "/db.json");
+		request.done(function(data) {
+			global.Data.find(participant => participant.id == dir).serverData = data;
+		});
 		return request;
 	}
-	
+
+	function loadParticipantTasks(dir){
+		var request = loadViaAjax(BASEDIRECTORY + dir + "/TaskData/" + "tasks.json");
+		request.done(function(data) {
+			global.Data.find(participant => participant.id == dir).clientData = data;
+		});
+		return request;
+	}
+
 	return new Promise((resolve, reject) => {
-		let Tasks = [];
-		let initialGet = loadTask(0);
-		initialGet.then(function(data){
-			let totalPages = initialGet.getResponseHeader("X-Total-Count");
-			let taskPromises = [];
-			for(let i = 1; i < totalPages; i++){
-				taskPromises[i] = loadTask(i);
-			}
-			Promise.all(taskPromises).then(function(values){
-				values.forEach(function(value, index) {
-					if(value){
-						Tasks[index] = value[0];
-					}
-				});
-				Tasks[0] = data[0];
-				global.Tasks = Tasks;
+		getFolderInformation().then(function() {
+			let dataProcesses = [];
+			global.Data.forEach(function(dir){
+				dataProcesses.push(loadParticipantLogs(dir.id));
+				dataProcesses.push(loadParticipantTasks(dir.id));
+			});
+			console.log("Added all dataProcesses");
+			Promise.allSettled(dataProcesses).then(function() {
 				resolve("done");
+				console.log("done all dataProcesses");
+			},function() {
+				resolve("done, some failed");
+				console.log("done all dataProcesses, some failed");
 			});
 		});
 	});
 }
+
+

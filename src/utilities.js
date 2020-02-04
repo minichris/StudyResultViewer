@@ -37,7 +37,7 @@ export function getLogEntryDetails(log){
 	if(log.message.toLowerCase().includes("document viewer")){
 		returnObject.component = "Document Viewer";
 	}
-	if(log.message.toLowerCase().includes("search bar")){
+	else if(log.message.toLowerCase().includes("search bar")){
 		returnObject.component = "Searchbar";
 		returnObject.manual = true;
 		
@@ -46,17 +46,29 @@ export function getLogEntryDetails(log){
 		search = search.split("@")[0].trim(); //remove text after search string
 		returnObject.status = search;
 	}
-	if(log.message.toLowerCase().includes("filter panel")){
+	else if(log.message.toLowerCase().includes("filter panel")){
 		returnObject.component = "Filter Panel";
+	}
+	else if(log.message.toLowerCase().includes("clicked a link")){
+		returnObject.component = "Hyperlink";
+	}
+	else{
+		returnObject.component = null;
 	}
 	
 	return returnObject;
 }
 
-export function getReleventFilterLogs(allLogData, task){
-	let startTime = task.Timestamp - (task.TimeSpentOnTask / 1000);
-	let endTime = task.Timestamp;
-	let filteredLogs = allLogData.filter(item => parseInt(item.timestamp) < endTime && startTime < parseInt(item.timestamp));
-	//console.log("Logs: ", dateTime.format(new Date(startTime*1000),'HH:mm:ss'), dateTime.format(new Date(endTime*1000),'HH:mm:ss'), filteredLogs);
-	return filteredLogs;
+export function getReleventFilterLogs(task){
+	let allLogData = global.Data.filter(participant => participant.serverData).flatMap(participant => participant.serverData.logs);
+	if(allLogData){
+		let startTime = task.Timestamp - (task.TimeSpentOnTask / 1000);
+		let endTime = task.Timestamp;
+		let filteredLogs = allLogData.filter(item => parseInt(item?.timestamp) < endTime && startTime < parseInt(item?.timestamp));
+		//console.log("Logs: ", dateTime.format(new Date(startTime*1000),'HH:mm:ss'), dateTime.format(new Date(endTime*1000),'HH:mm:ss'), filteredLogs);
+		return filteredLogs;
+	}
+	else{
+		return null;
+	}
 }

@@ -9,9 +9,11 @@ export default class App extends React.Component {
 	}
 	
 	render(){
+		let tasks = this.props.Data.flatMap(participant => participant.clientData);
+		console.log(tasks);
 		return (
 			<>
-				<Tasks data={this.props.Tasks} />
+				<Tasks tasks={tasks} />
 			</>
 		);
 	}
