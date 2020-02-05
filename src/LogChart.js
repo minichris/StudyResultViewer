@@ -59,7 +59,7 @@ export default class LogChart extends PureComponent {
 		}
 		else{
 			return(
-				<span>No GDPVis component usage data was collected for this task.</span>
+				<span className="warning">No GDPVis component usage data was collected for this task.</span>
 			);
 		}
   }

@@ -16,7 +16,7 @@ export default class Task extends React.Component {
 	}
 
 	checkboxChanged(status){
-		console.log(status.target);
+		console.log(status.target.checked);
 	}
 
 	imageTextClicked(){
@@ -69,7 +69,7 @@ export default class Task extends React.Component {
 					{imageComponent}
 				</td>
 				<td>
-					<LogChart logData={getReleventFilterLogs(this.props.task)} />
+					{logChart}
 				</td>
 				<td>
 					{actuallyCompletedTaskCheckbox}
