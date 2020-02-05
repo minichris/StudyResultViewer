@@ -1,7 +1,7 @@
 export function getSystemDetails(systemString){
 	if(systemString.includes("SV_8JrKQnFk0jktjU1")){
 		return {
-			Type: "Wiki post use questionniare", 
+			Type: "Pre-study questionniare", 
 			ShouldHaveLogs: false,
 			RequiresMarking: false
 		};
@@ -9,7 +9,7 @@ export function getSystemDetails(systemString){
 	
 	if(systemString.includes("SV_aUXwBVYTaC0wklL")){
 		return {
-			Type: "GDPVis post use questionniare", 
+			Type: "System post-use questionniare", 
 			ShouldHaveLogs: false,
 			RequiresMarking: false
 		};
