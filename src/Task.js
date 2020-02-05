@@ -13,10 +13,52 @@ export default class Task extends React.Component {
 		this.state = {
 			showImage: false
 		}
+
+		this.checkboxChanged = this.checkboxChanged.bind(this);
 	}
 
-	checkboxChanged(status){
-		console.log(status.target.checked);
+	checkboxChanged(statusInput){
+		let task = this.props.task;
+		let checkboxStatus = statusInput.target.checked;
+		let target = statusInput.target;
+		let inputData = {
+			"participant": task.Participant,
+			"task": task.DisplayTitle, 
+			"completed": checkboxStatus,
+			"id": task.Participant + "_" + task.DisplayTitle
+		};
+
+		target.disabled = true;
+
+		$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: "http://" + window.location.hostname + ":3030/results/" + task.Participant + "_" + task.DisplayTitle,
+			success: function(){
+				$.ajax({
+					type: "PUT",
+					dataType: "json",
+					url: "http://" + window.location.hostname + ":3030/results/" + task.Participant + "_" + task.DisplayTitle,
+					data: inputData,
+					complete: function(){
+						target.disabled = false;
+					}
+				});
+			},
+			error: function(){
+				$.ajax({
+					type: "POST",
+					dataType: "json",
+					url: "http://" + window.location.hostname + ":3030/results",
+					data: inputData,
+					complete: function(){
+						target.disabled = false;
+					}
+				});
+			}
+		});
+
+		
 	}
 
 	imageTextClicked(){
@@ -37,11 +79,17 @@ export default class Task extends React.Component {
 		}
 
 		let actuallyCompletedTaskCheckbox;
-		if(taskSystemDetails.RequiresMarking){
-			actuallyCompletedTaskCheckbox = (<Checkbox onChange={this.checkboxChanged.bind(this)} checked={false} indeterminate={true} />);
-		}
-		else{
-			actuallyCompletedTaskCheckbox = (<Checkbox checked={true} indeterminate={false} disabled={true} />);
+		let submittedCheckboxData = global.CheckboxData.find(d => d.participant == this.props.task.Participant && d. task == this.props.task.DisplayTitle);
+		if(submittedCheckboxData){
+			actuallyCompletedTaskCheckbox = (<Checkbox checked={submittedCheckboxData.completed == "true"} indeterminate={false} disabled={true} />);
+		}	
+		else {
+			if(taskSystemDetails.RequiresMarking){
+				actuallyCompletedTaskCheckbox = (<Checkbox onChange={this.checkboxChanged} checked={false} indeterminate={true} />);
+			}
+			else{
+				actuallyCompletedTaskCheckbox = (<Checkbox checked={true} indeterminate={false} disabled={true} />);
+			}
 		}
 
 		let imageComponent;

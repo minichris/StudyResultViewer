@@ -16,6 +16,7 @@ global.Data = [];
 getAllData().then(function(){
 	console.log("Done loading");
 	console.log("Data", global.Data);
+	console.log("Checkbox Data", global.CheckboxData);
 	ReactDOM.render(<App Data={global.Data} />, document.getElementById("Content"));
 });
 
@@ -54,6 +55,14 @@ function getFolderInformation(){
 }
 
 function getAllData(){
+	function getCheckBoxData(){
+		var request = loadViaAjax("http://" + window.location.hostname + ":3030/results");
+		request.done(function(data) {
+			global.CheckboxData = data;
+		});
+		return request;
+	}
+	
 	function loadParticipantServerData(dir){
 		var request = loadViaAjax(BASEDIRECTORY + dir + "/db.json");
 		request.done(function(data) {
@@ -78,6 +87,7 @@ function getAllData(){
 				dataProcesses.push(loadParticipantServerData(dir.id));
 				dataProcesses.push(loadParticipantClientData(dir.id));
 			});
+			dataProcesses.push(getCheckBoxData());
 			Promise.allSettled(dataProcesses).then(function() {
 				resolve("done");
 				console.log("done all dataProcesses");
