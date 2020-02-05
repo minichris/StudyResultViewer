@@ -47,10 +47,18 @@ export default class Task extends React.Component {
 		let imageComponent;
 
 		if(this.state.showImage){
-			imageComponent = (<img src={"data:image/png;base64, " + this.props.task.ScreenshotPNG} />);
+			imageComponent = (
+				<td className="imageContainer">
+					<img src={"data:image/png;base64, " + this.props.task.ScreenshotPNG} />
+				</td>
+			);
 		}
 		else{
-			imageComponent = (<span className="showImageText">Click here to show image</span>);
+			imageComponent = (
+				<td className="imageContainer clickable" onClick={this.imageTextClicked.bind(this)}>
+					<span className="showImageText">Click here to show image</span>
+				</td>
+			);
 		}
 
 		return (
@@ -65,9 +73,7 @@ export default class Task extends React.Component {
 					<div className="Title">Task title: {this.props.task.DisplayTitle}, {this.props.task.Title}</div>
 					<TaskRelatedLogs task={this.props.task} />
 				</td>
-				<td className="imageContainer" onClick={this.imageTextClicked.bind(this)}>
-					{imageComponent}
-				</td>
+				{imageComponent}
 				<td>
 					{logChart}
 				</td>

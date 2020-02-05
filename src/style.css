@@ -4,6 +4,9 @@
 
 .imageContainer{
 	width: 400px;
+}
+
+.clickable{
 	cursor: pointer;
 }
 
