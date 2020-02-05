@@ -13,7 +13,7 @@ export default class Tasks extends React.Component {
 		let orderedTasks = this.props.tasks.sort((a, b) => a.Timestamp - b.Timestamp);
 
 		let elements = orderedTasks.map((task, i) =>
-			 <Task key={"task_" + i} task={task}/>
+			 <Task key={"task_" + task.Participant + task.DisplayTitle} task={task}/>
 		);
 		return (
 			<table>
@@ -22,6 +22,7 @@ export default class Tasks extends React.Component {
 						<th>Task Data</th>
 						<th>Screenshot</th>
 						<th>GDPVis Component Usage</th>
+						<th>Actually Completed Task</th>
 					</tr>
 				</thead>
 				<tbody>
