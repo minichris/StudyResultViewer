@@ -1,3 +1,538 @@
 {
-  "results": []
+  "results": [
+    {
+      "participant": "7427",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "7427_Task 1A"
+    },
+    {
+      "participant": "7423",
+      "task": "Task 1A",
+      "completed": "false",
+      "id": "7423_Task 1A"
+    },
+    {
+      "participant": "3478",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "3478_Task 1A"
+    },
+    {
+      "participant": "9809",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "9809_Task 1A"
+    },
+    {
+      "participant": "3998",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "3998_Task 1A"
+    },
+    {
+      "participant": "8055",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "8055_Task 1A"
+    },
+    {
+      "participant": "7171",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "7171_Task 1A"
+    },
+    {
+      "participant": "8172",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "8172_Task 1A"
+    },
+    {
+      "participant": "1807",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "1807_Task 1A"
+    },
+    {
+      "participant": "6906",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "6906_Task 1A"
+    },
+    {
+      "participant": "9726",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "9726_Task 1A"
+    },
+    {
+      "participant": "7335",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "7335_Task 1A"
+    },
+    {
+      "participant": "5648",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "5648_Task 1A"
+    },
+    {
+      "participant": "1720",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "1720_Task 1A"
+    },
+    {
+      "participant": "7142",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "7142_Task 1A"
+    },
+    {
+      "participant": "2935",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "2935_Task 1A"
+    },
+    {
+      "participant": "4084",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "4084_Task 1A"
+    },
+    {
+      "participant": "7923",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "7923_Task 1A"
+    },
+    {
+      "participant": "4678",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "4678_Task 1A"
+    },
+    {
+      "participant": "5283",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "5283_Task 1A"
+    },
+    {
+      "participant": "3070",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "3070_Task 1A"
+    },
+    {
+      "participant": "3911",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "3911_Task 1A"
+    },
+    {
+      "participant": "2732",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "2732_Task 1A"
+    },
+    {
+      "participant": "4454",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "4454_Task 1A"
+    },
+    {
+      "participant": "1269",
+      "task": "Task 1A",
+      "completed": "true",
+      "id": "1269_Task 1A"
+    },
+    {
+      "participant": "7427",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "7427_Task 2A"
+    },
+    {
+      "participant": "7423",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "7423_Task 2A"
+    },
+    {
+      "participant": "3478",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "3478_Task 2A"
+    },
+    {
+      "participant": "9809",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "9809_Task 2A"
+    },
+    {
+      "participant": "3998",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "3998_Task 2A"
+    },
+    {
+      "participant": "8055",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "8055_Task 2A"
+    },
+    {
+      "participant": "7171",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "7171_Task 2A"
+    },
+    {
+      "participant": "8172",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "8172_Task 2A"
+    },
+    {
+      "participant": "1807",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "1807_Task 2A"
+    },
+    {
+      "participant": "6906",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "6906_Task 2A"
+    },
+    {
+      "participant": "9726",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "9726_Task 2A"
+    },
+    {
+      "participant": "7335",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "7335_Task 2A"
+    },
+    {
+      "participant": "5648",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "5648_Task 2A"
+    },
+    {
+      "participant": "1720",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "1720_Task 2A"
+    },
+    {
+      "participant": "7142",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "7142_Task 2A"
+    },
+    {
+      "participant": "2935",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "2935_Task 2A"
+    },
+    {
+      "participant": "4084",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "4084_Task 2A"
+    },
+    {
+      "participant": "7923",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "7923_Task 2A"
+    },
+    {
+      "participant": "4678",
+      "task": "Task 2A",
+      "completed": "false",
+      "id": "4678_Task 2A"
+    },
+    {
+      "participant": "5283",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "5283_Task 2A"
+    },
+    {
+      "participant": "3070",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "3070_Task 2A"
+    },
+    {
+      "participant": "3911",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "3911_Task 2A"
+    },
+    {
+      "participant": "2732",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "2732_Task 2A"
+    },
+    {
+      "participant": "4454",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "4454_Task 2A"
+    },
+    {
+      "participant": "1269",
+      "task": "Task 2A",
+      "completed": "true",
+      "id": "1269_Task 2A"
+    },
+    {
+      "participant": "7423",
+      "task": "Task 3A",
+      "completed": "false",
+      "id": "7423_Task 3A"
+    },
+    {
+      "participant": "3478",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "3478_Task 3A"
+    },
+    {
+      "participant": "7427",
+      "task": "Task 3A",
+      "completed": "false",
+      "id": "7427_Task 3A"
+    },
+    {
+      "participant": "9809",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "9809_Task 3A"
+    },
+    {
+      "participant": "3998",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "3998_Task 3A"
+    },
+    {
+      "participant": "8055",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "8055_Task 3A"
+    },
+    {
+      "participant": "7171",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "7171_Task 3A"
+    },
+    {
+      "participant": "8172",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "8172_Task 3A"
+    },
+    {
+      "participant": "1807",
+      "task": "Task 3A",
+      "completed": "false",
+      "id": "1807_Task 3A"
+    },
+    {
+      "participant": "6906",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "6906_Task 3A"
+    },
+    {
+      "participant": "9726",
+      "task": "Task 3A",
+      "completed": "false",
+      "id": "9726_Task 3A"
+    },
+    {
+      "participant": "7335",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "7335_Task 3A"
+    },
+    {
+      "participant": "5648",
+      "task": "Task 3A",
+      "completed": "true",
+      "id": "5648_Task 3A"
+    },
+    {
+      "participant": "1720",
+      "task": "Task 3A",
+      "completed": "false",
+      "id": "1720_Task 3A"
+    },
+    {
+      "participant": "7427",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7427_Task 1B"
+    },
+    {
+      "participant": "7423",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7423_Task 1B"
+    },
+    {
+      "participant": "3478",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "3478_Task 1B"
+    },
+    {
+      "participant": "9809",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "9809_Task 1B"
+    },
+    {
+      "participant": "3998",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "3998_Task 1B"
+    },
+    {
+      "participant": "8055",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "8055_Task 1B"
+    },
+    {
+      "participant": "7171",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7171_Task 1B"
+    },
+    {
+      "participant": "8172",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "8172_Task 1B"
+    },
+    {
+      "participant": "1807",
+      "task": "Task 1B",
+      "completed": "false",
+      "id": "1807_Task 1B"
+    },
+    {
+      "participant": "6906",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "6906_Task 1B"
+    },
+    {
+      "participant": "9726",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "9726_Task 1B"
+    },
+    {
+      "participant": "7335",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7335_Task 1B"
+    },
+    {
+      "participant": "5648",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "5648_Task 1B"
+    },
+    {
+      "participant": "1720",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "1720_Task 1B"
+    },
+    {
+      "participant": "7142",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7142_Task 1B"
+    },
+    {
+      "participant": "2935",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "2935_Task 1B"
+    },
+    {
+      "participant": "4084",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "4084_Task 1B"
+    },
+    {
+      "participant": "7923",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "7923_Task 1B"
+    },
+    {
+      "participant": "4678",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "4678_Task 1B"
+    },
+    {
+      "participant": "5283",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "5283_Task 1B"
+    },
+    {
+      "participant": "3070",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "3070_Task 1B"
+    },
+    {
+      "participant": "3911",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "3911_Task 1B"
+    },
+    {
+      "participant": "2732",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "2732_Task 1B"
+    },
+    {
+      "participant": "4454",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "4454_Task 1B"
+    },
+    {
+      "participant": "1269",
+      "task": "Task 1B",
+      "completed": "true",
+      "id": "1269_Task 1B"
+    }
+  ]
 }
