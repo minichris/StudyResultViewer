@@ -10,12 +10,32 @@ export default class Tasks extends React.Component {
 	
 	render(){
 		//.filter(task => task.Completed)
-		let orderedTasks = this.props.tasks.sort((a, b) => a.Timestamp - b.Timestamp);
+		let orderedTasks = [];
+		orderedTasks = this.props.tasks.sort((a, b) => a.Timestamp - b.Timestamp);
 
 		let elements = orderedTasks.map((task, i) =>
 			 <Task key={"task_" + task.Participant + task.DisplayTitle} task={task}/>
 		);
+
+		global.RenderedTasks = orderedTasks;
+
+		let taskCbData = {"true": 0, "false": 0};
+		orderedTasks.forEach(task => {
+			let cbdata = global.CheckboxData.find(d => d.participant == task.Participant && d.task == task.DisplayTitle);
+			if(cbdata){
+				taskCbData[cbdata.completed]++;
+			}
+		});
+		
+
 		return (
+			<>
+			<div>
+				<div>Currently rendered tasks set to "global.RenderedTasks".</div>
+				<div>Currently displayed tasks: {orderedTasks.length}</div>
+				<div>Currently completed tasks (since last update of checkbox data): {taskCbData["true"]}</div>
+				<div>Currently failed tasks (since last update of checkbox data): {taskCbData["false"]}</div>
+			</div>
 			<table>
 				<thead>
 					<tr>
@@ -29,6 +49,7 @@ export default class Tasks extends React.Component {
 					{elements}
 				</tbody>
 			</table>
+			</>
 		);
 	}
 }
