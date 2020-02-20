@@ -27,6 +27,40 @@ export default class App extends React.Component {
 		this.setState({selectedOption});
 		this.forceUpdate();
 	};
+
+	
+	buttonClick(){
+		function updateClipboard(newClip) {
+			navigator.clipboard.writeText(newClip).then(function() {
+				console.log("Writing to clipboard successful");
+			}, function() {
+				console.log("Writing to clipboard failed");
+			});
+		}
+
+		const { selectedOption } = this.state;
+		if(selectedOption){
+			let taskData = this.props.Data.flatMap(participant => participant.clientData);
+			const taskAname = "Task 2A".slice(0, -1).concat("A");
+			const taskBname = "Task 2B".slice(0, -1).concat("B");
+			const taskATimes = taskData.filter(task => task.DisplayTitle == taskAname).flatMap(task => task.TimeSpentOnTask / 1000);
+			const taskBTimes = taskData.filter(task => task.DisplayTitle == taskBname).flatMap(task => task.TimeSpentOnTask / 1000);
+			let copyString = "GDPWiki\tGDPVis\r\n";
+			if(taskATimes.length != taskBTimes.length){
+				updateClipboard("Lengths don't match!");
+			}
+			else{
+				for(let i = 0; i < taskATimes.length; i++){
+					copyString += taskATimes[i] + "\t" + taskBTimes[i] + "\r\n";
+				
+				}
+				updateClipboard(copyString);
+			}
+		}
+		else{
+			console.log("No option selected");
+		}
+	}
 	
 	render(){
 		let tasks = this.props.Data.flatMap(participant => participant.clientData);
@@ -37,6 +71,7 @@ export default class App extends React.Component {
 		return (
 			<>
 				<Select value={selectedOption} onChange={this.handleChange.bind(this)} options={this.options()} />
+				<button onClick={this.buttonClick.bind(this)}>Copy shown tasks timings</button>
 				<Tasks tasks={tasks} />
 			</>
 		);
