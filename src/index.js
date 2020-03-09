@@ -45,11 +45,14 @@ function getFolderInformation(){
 		return data.split("\n").map(line => parseInt(line)).filter(line => !isNaN(line));
 	});
 	request.done(function(data) {
-		data.forEach(dir => global.Data.push({
-			id: dir,
-			serverData: null,
-			clientData: null
-		}));
+		data.forEach(function(dir){
+			let dirName = dir.toString().padStart(4, '0');
+			global.Data.push({
+				id: dirName,
+				serverData: null,
+				clientData: null
+			})
+		});
 	});
 	return request;
 }
