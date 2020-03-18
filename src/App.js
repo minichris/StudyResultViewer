@@ -3,6 +3,12 @@ import ReactDOM from "react-dom";
 import $ from 'jquery';
 import Tasks from './Tasks.js';
 import Select from 'react-select';
+import _ from 'lodash';
+
+function σ (array) {
+    var avg = _.sum(array) / array.length;
+    return Math.sqrt(_.sum(_.map(array, (i) => Math.pow((i - avg), 2))) / array.length);
+};
 
 export default class App extends React.Component {
 	constructor(props){
@@ -117,7 +123,26 @@ export default class App extends React.Component {
 		}
 	}
 
-
+	getStandardDeviation(){
+		const { selectedOption } = this.state;
+		if(selectedOption){
+			const currentTaskName = selectedOption.value; //get the task name without the letter
+			let allTaskData = this.props.Data.flatMap(participant => participant.clientData); //get all the task data
+			const allParticipants = new Set(allTaskData.flatMap(task => task.Participant)); //get an array of all the participant ids
+			let AllTaskTimes = [];
+			allParticipants.forEach(function(paticpantID){ //for each participant
+				const taskData = allTaskData.find(task => task.DisplayTitle == currentTaskName && task.Participant == paticpantID);
+				const taskCompleted = global.CheckboxData.find(d => d.participant == paticpantID && d.task == currentTaskName).completed === "true";
+				const taskTime = taskData.TimeSpentOnTask / 1000;
+				AllTaskTimes.push(taskTime);
+			});
+			console.log(AllTaskTimes);
+			this.updateClipboard( σ(AllTaskTimes) );
+		}
+		else{
+			this.updateClipboard( "No selected option" );
+		}
+	}
 
 
 	
@@ -134,6 +159,7 @@ export default class App extends React.Component {
 				<button onClick={() => {this.makeClipboard(true, false)}}>Copy only shown tasks timings which completed (showing faileds)</button>
 				<button onClick={() => {this.makeClipboard(true)}}>Copy only shown tasks timings which completed (ignore participants who failed at least one)</button>
 				<button onClick={() => {this.getDifference()}}>Get interpair difference</button>
+				<button onClick={() => {this.getStandardDeviation()}}>Get standard deviation of completed</button>
 				<Tasks tasks={tasks} />
 			</>
 		);
