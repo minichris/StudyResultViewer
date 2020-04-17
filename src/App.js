@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Tasks from './Tasks.js';
 import Select from 'react-select';
 import _ from 'lodash';
+import {getReleventFilterLogs} from './utilities.js';
 
 function σ (array) {
     var avg = _.sum(array) / array.length;
@@ -144,7 +145,22 @@ export default class App extends React.Component {
 		}
 	}
 
-
+	getTasksModuleUsage(){
+		const { selectedOption } = this.state;
+		if(selectedOption){
+			const currentTaskName = selectedOption.value; //get the task name without the letter
+			let allTaskData = this.props.Data.flatMap(participant => participant.clientData); //get all the task data
+			const allParticipants = new Set(allTaskData.flatMap(task => task.Participant)); //get an array of all the participant ids
+			let Data = [];
+			allParticipants.forEach(function(paticpantID){ //for each participant
+				const taskData = allTaskData.find(task => task.DisplayTitle == currentTaskName && task.Participant == paticpantID);
+				const taskCompleted = global.CheckboxData.find(d => d.participant == paticpantID && d.task == currentTaskName).completed === "true";
+				if(taskCompleted){
+					console.log(getReleventFilterLogs(taskData));
+				}
+			});
+		}
+	}
 	
 	render(){
 		let tasks = this.props.Data.flatMap(participant => participant.clientData);
@@ -160,6 +176,7 @@ export default class App extends React.Component {
 				<button onClick={() => {this.makeClipboard(true)}}>Copy only shown tasks timings which completed (ignore participants who failed at least one)</button>
 				<button onClick={() => {this.getDifference()}}>Get interpair difference</button>
 				<button onClick={() => {this.getStandardDeviation()}}>Get standard deviation of completed</button>
+				<button onClick={() => {this.getTasksModuleUsage()}}>Get this tasks module usage</button>
 				<Tasks tasks={tasks} />
 			</>
 		);
