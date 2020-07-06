@@ -104,14 +104,14 @@ export default class App extends React.Component {
 							copyString += taskATime;
 						}
 						else{
-							copyString += "Failed";
+							copyString += "FALSE";
 						}
 						copyString += "\t";
 						if(taskBCompleted){
 							copyString += taskBTime;
 						}
 						else{
-							copyString += "Failed";
+							copyString += "FALSE";
 						}
 						copyString += "\r\n";
 					}
